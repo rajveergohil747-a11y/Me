@@ -1,0 +1,257 @@
+03.21 9:46 PM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajveer | Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    backdrop-filter: blur(10px);
+}
+
+nav h1 {
+    color: #38bdf8;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h2 {
+    font-size: 42px;
+    color: #38bdf8;
+}
+
+.hero p {
+    color: #cbd5f5;
+}
+
+/* Sections */
+.section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Profile Image */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid transparent;
+    background: linear-gradient(#0f172a, #0f172a) padding-box,
+                linear-gradient(45deg, #38bdf8, #22c55e) border-box;
+    transition: 0.4s;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #38bdf8;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #38bdf8;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* Chatbot */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #38bdf8;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.chat-body {
+    height: 220px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.chat-input {
+    display: flex;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+}
+
+.chat-input button {
+    background: #38bdf8;
+    border: none;
+    padding: 10px;
+}
+
+.msg {
+    margin: 5px 0;
+}
+
+.user {
+    text-align: right;
+    color: #38bdf8;
+}
+
+.bot {
+    text-align: left;
+    color: #a5f3fc;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Rajveer</h1>
+</nav>
+
+<section class="hero">
+    <h2>Hi, I'm Rajveersinh Gohil </h2>
+    <p>Class 9 Student | App Developer | Creator of NikoApp</p>
+</section>
+
+<section class="section">
+    <h2>About Me</h2>
+
+    <div class="card" style="display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
+        
+        <img src="profile.jpg" class="profile-img">
+
+        <p id="typingText" style="flex:1;"></p>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>My Projects</h2>
+
+    <div class="card">
+        <h3>NikoApp</h3>
+        <p>
+        A modern messaging and social app with private chat, Air reels, and AI assistant.
+        </p>
+        <a class="btn" href="https://nikoapp-82.vercel.app" target="_blank">Visit NikoApp</a>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+        <h3>Tournament System</h3>
+        <p>
+        Organized Free Fire tournaments with custom rules and prize systems.
+        </p>
+    </div>
+
+</section>
+
+<!-- Chatbot -->
+<div class="chatbot">
+    <div class="chat-header">Niki AI 🤖</div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-input">
+        <input id="userInput" placeholder="Ask about Rajveer...">
+        <button onclick="sendMsg()">Send</button>
+    </div>
+</div>
+
+<script>
+// Typing Effect
+let text = "I am Rajveersinh Gohil, a year-old Class  student and passionate app developer. I love creating apps like NikoApp and designing modern user interfaces.";
+let i = 0;
+
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typingText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 30);
+    }
+}
+typing();
+
+// Chatbot
+function sendMsg() {
+    let input = document.getElementById("userInput");
+    let msg = input.value;
+    if (!msg) return;
+
+    let chat = document.getElementById("chatBody");
+
+    chat.innerHTML += `<div class="msg user">${msg}</div>`;
+
+    let reply = getReply(msg.toLowerCase());
+
+    setTimeout(() => {
+        chat.innerHTML += `<div class="msg bot">${reply}</div>`;
+        chat.scrollTop = chat.scrollHeight;
+    }, 500);
+
+    input.value = "";
+}
+
+function getReply(msg) {
+    if (msg.includes("who")) {
+        return "Rajveer is a year-old developer and creator of NikoApp.";
+    }
+    if (msg.includes("niko")) {
+        return "NikoApp is a messaging and social app created by Rajveer.";
+    }
+    if (msg.includes("project")) {
+        return "Rajveer has built NikoApp and tournament systems.";
+    }
+    if (msg.includes("age")) {
+        return "Rajveer is years old.";
+    }
+    return "Rajveer is a young and talented app developer.";
+}
+</script>
+
+</body>
+</html>
