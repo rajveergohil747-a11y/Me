@@ -1,0 +1,18 @@
+<section id="about" class="section">
+    <h2>About Me</h2>
+
+    <div class="card" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+
+        <!-- Profile Image -->
+        <img src="profile.jpg" alt="Rajveer"
+        style="width:150px; height:150px; border-radius:50%; object-fit:cover; border:3px solid #38bdf8;">
+
+        <!-- About Text -->
+        <p style="flex:1;">
+        I am Rajveersinh Gohil, a year-old student currently studying in Class 
+        I am passionate about creating apps and exploring new technologies.
+        I love building creative projects like NikoApp and working on modern UI designs.
+        </p>
+
+    </div>
+</section>
